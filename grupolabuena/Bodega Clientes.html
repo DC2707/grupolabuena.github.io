@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodega de Clientes</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        table td, table th {
+            text-align: center;
+        }
+        .actions button {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Bodega de Clientes</h1>
+        
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Cliente</label>
+                    <input type="text" id="nombre" class="form-control" placeholder="Nombre completo">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" class="form-control" placeholder="Edad">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Profesion">Profesion</label>
+                    <input type="text" id="Profesion" class="form-control" placeholder="Indique su profesion">
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-success" onclick="crearCliente()">Crear Cliente</button>
+        </div>
+        
+        <h2 class="mt-5">Lista de Clientes</h2>
+        
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Profesion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="clientesTableBody">
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        const clientes = [
+   
+            { nombre: 'Ana García', edad: 25, Profesion:'Arquitecta'  },
+            { nombre: 'Carlos Rodríguez', edad: 35, Profesion:'Quimico' },
+            { nombre: 'María López', edad: 40,Profesion:'Ingeniera de sistemas' },
+            { nombre: 'Luis Martínez', edad: 28,Profesion:'Doctor' },
+            { nombre: 'Pedro González', edad: 50,Profesion:'Astronauta' },
+            { nombre: 'Laura Sánchez', edad: 22,Profesion:'Pediatra' },
+            { nombre: 'Antonio Fernández', edad: 45,Profesion:'Otorrinonaringologo' },
+            
+           
+        ];
+
+        function mostrarClientes() {
+            const tabla = document.getElementById('clientesTableBody');
+            tabla.innerHTML = '';  
+            clientes.forEach((cliente, index) => {
+                const fila = tabla.insertRow();
+                fila.innerHTML = `
+                    <td>${cliente.nombre}</td>
+                    <td>${cliente.edad}</td>
+                    <td>${cliente.Profesion}</td>
+
+                    <td class="actions">
+                        <button class="btn btn-danger" onclick="borrarCliente(${index})">Borrar</button>
+                    </td>
+                `;
+            });
+        }
+
+        function crearCliente() {
+            const nombre = document.getElementById('nombre').value;
+            const edad = document.getElementById('edad').value;
+            const Profesion = document.getElementById('Profesion').value;
+
+            if (nombre && edad && Profesion) {
+                clientes.push({ nombre, edad: parseInt(edad) });
+                document.getElementById('nombre').value = '';
+                document.getElementById('edad').value = '';
+                document.getElementById('Profesion').value = '';
+                mostrarClientes();
+            } else {
+                alert('Por favor ingresa un nombre, una edad y una profesion.');
+            }
+        }
+
+    
+        function borrarCliente(index) {
+            clientes.splice(index, 1);
+            mostrarClientes();
+        }
+
+
+        mostrarClientes();
+    </script>
+
+</body>
+</html>

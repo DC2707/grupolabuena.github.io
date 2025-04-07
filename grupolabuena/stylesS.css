@@ -1,0 +1,39 @@
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.jumbotron {
+    background-color: #ff0000;
+    border-radius: 15px;
+}
+
+.jumbotron .btn {
+    background-color: #FFFFFF;
+    color: #ff0000;
+}
+
+.jumbotron .btn:hover {
+    background-color: #e6e6e6;
+}
+
+footer {
+    background-color: #282828;
+}
+
+#audioPlayer {
+    background-color: #ff0000;
+    border-radius: 15px;
+}
+
+.list-group-item {
+    background-color: #FFFFFF;
+}
+
+.text-dark {
+    color: #000000 !important;
+}
